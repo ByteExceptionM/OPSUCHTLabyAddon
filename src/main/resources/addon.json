@@ -1,6 +1,5 @@
 {
-  "name": "Example Addon",
+  "name": "OPSuchtLabyModAddon",
   "uuid": "%uuid%",
-  "mainClass": "com.example.addon.ExampleAddon",
-  "transformerClass": "com.example.addon.ExampleAddonTransformer"
+  "mainClass": "eu.byteexception.labymod.OPSuchtLabyModAddon"
 }

@@ -30,11 +30,6 @@ hs_err_pid*
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-.idea/**/misc.xml
-.idea/**/discord.xml
-.idea/**/encodings.xml
-.idea/codeStyles/
-.idea/sonarlint/
 
 # Generated files
 .idea/**/contentModel.xml
@@ -83,6 +78,8 @@ cmake-build-*/
 # IntelliJ
 out/
 
+build
+
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
@@ -127,3 +124,4 @@ src/test/
 .idea/intellij-javadocs-4.0.1.xml
 run/
 libs/
+/.idea/
