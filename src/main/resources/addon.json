@@ -1,7 +1,7 @@
 {
-  "name": "OPSucht-LabyModAddon",
+  "name": "OPSucht-LabyAddon",
   "uuid": "%uuid%",
-  "mainClass": "eu.byteexception.labymod.OPSuchtLabyModAddon",
+  "mainClass": "eu.byteexception.labymod.OPSuchtLabyAddon",
   "description": "Official OPSucht LabyMod addon",
   "version": 1,
   "author": "ByteException_",

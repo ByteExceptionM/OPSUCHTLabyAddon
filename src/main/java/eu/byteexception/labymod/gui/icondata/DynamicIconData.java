@@ -1,18 +1,18 @@
 package eu.byteexception.labymod.gui.icondata;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.ControlElement;
 import net.minecraft.util.ResourceLocation;
 
+@AllArgsConstructor
+@Getter(AccessLevel.PROTECTED)
 public class DynamicIconData extends ControlElement.IconData {
 
     protected final String identifier;
     protected final String url;
-
-    public DynamicIconData(String identifier, String url) {
-        this.identifier = identifier;
-        this.url = url;
-    }
 
     @Override
     public boolean hasTextureIcon() {

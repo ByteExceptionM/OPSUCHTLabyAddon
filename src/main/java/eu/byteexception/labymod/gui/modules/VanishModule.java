@@ -1,25 +1,28 @@
 package eu.byteexception.labymod.gui.modules;
 
-import eu.byteexception.labymod.OPSuchtLabyModAddon;
+import eu.byteexception.labymod.OPSuchtLabyAddon;
+import eu.byteexception.labymod.gui.settings.PlayerSettings;
+import lombok.AllArgsConstructor;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
 
+@AllArgsConstructor
 public class VanishModule extends SimpleModule {
 
-    private final OPSuchtLabyModAddon addon;
+    private final OPSuchtLabyAddon addon;
     private final ModuleCategory moduleCategory;
-
-    public VanishModule(OPSuchtLabyModAddon addon, ModuleCategory moduleCategory) {
-        this.addon = addon;
-        this.moduleCategory = moduleCategory;
-    }
 
     @Override
     public ModuleCategory getCategory() {
         return this.moduleCategory;
+    }
+
+    @Override
+    public boolean isShown() {
+        return PlayerSettings.getBooleanValue(this.getSettingName());
     }
 
     @Override
