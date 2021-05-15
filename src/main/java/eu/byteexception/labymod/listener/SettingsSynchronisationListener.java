@@ -3,6 +3,7 @@ package eu.byteexception.labymod.listener;
 import com.google.gson.JsonObject;
 import eu.byteexception.labymod.OPSuchtLabyModAddon;
 import eu.byteexception.labymod.gui.modules.FlyModule;
+import eu.byteexception.labymod.gui.modules.GlowModule;
 import eu.byteexception.labymod.gui.modules.VanishModule;
 import eu.byteexception.labymod.listener.labymod.FlyModuleUpdateListener;
 import eu.byteexception.labymod.listener.labymod.VanishModuleUpdateListener;
@@ -31,6 +32,10 @@ public class SettingsSynchronisationListener {
         if (settingsObject.get("fly").getAsBoolean()) {
             this.addon.getApi().registerModule(new FlyModule(this.addon, this.addon.opSuchtModuleCategory));
             this.addon.getApi().getEventService().registerListener(new FlyModuleUpdateListener(this.addon));
+        }
+
+        if (settingsObject.get("glow").getAsBoolean()) {
+            this.addon.getApi().registerModule(new GlowModule(this.addon, this.addon.opSuchtModuleCategory));
         }
 
         PlayerSettings.settingsInitialized = true;
