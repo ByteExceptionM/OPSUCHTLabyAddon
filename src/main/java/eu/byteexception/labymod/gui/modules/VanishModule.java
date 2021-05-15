@@ -5,6 +5,7 @@ import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
+import net.labymod.utils.ModColor;
 
 public class VanishModule extends SimpleModule {
 
@@ -28,7 +29,7 @@ public class VanishModule extends SimpleModule {
 
     @Override
     public String getDisplayValue() {
-        return VanishSetting.vanishMode ? "An" : "Aus";
+        return VanishSetting.vanishMode ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
     }
 
     @Override

@@ -6,6 +6,7 @@ import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
+import net.labymod.utils.ModColor;
 
 public class FlyModule extends SimpleModule {
 
@@ -29,7 +30,7 @@ public class FlyModule extends SimpleModule {
 
     @Override
     public String getDisplayValue() {
-        return FlySetting.flyMode ? "An" : "Aus";
+        return FlySetting.flyMode ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
     }
 
     @Override
