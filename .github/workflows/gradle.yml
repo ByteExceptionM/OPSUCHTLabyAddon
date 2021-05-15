@@ -3,12 +3,12 @@ name: Gradle build
 on:
   push:
     branches:
-    - master
-    - main
+      - main
+      - develop
   pull_request:
     branches:
-    - master
-    - main
+      - main
+      - develop
 
 jobs:
   build:
