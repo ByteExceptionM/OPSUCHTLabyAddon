@@ -1,6 +1,6 @@
 package eu.byteexception.labymod.gui.modules;
 
-import eu.byteexception.labymod.listener.labymod.FlyModuleUpdateListener;
+import eu.byteexception.labymod.internal.listener.FlyModeUpdateListener;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
@@ -40,7 +40,7 @@ public class FlyModule extends ILabyModule {
 
     @Override
     public String getListenerName() {
-        return FlyModuleUpdateListener.class.getCanonicalName();
+        return FlyModeUpdateListener.class.getCanonicalName();
     }
 
     public static class FlySetting {

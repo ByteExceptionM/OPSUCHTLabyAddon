@@ -1,6 +1,6 @@
 package eu.byteexception.labymod.gui.modules;
 
-import eu.byteexception.labymod.listener.labymod.VanishModuleUpdateListener;
+import eu.byteexception.labymod.internal.listener.VanishModeUpdateListener;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
@@ -39,7 +39,7 @@ public class VanishModule extends ILabyModule {
 
     @Override
     public String getListenerName() {
-        return VanishModuleUpdateListener.class.getCanonicalName();
+        return VanishModeUpdateListener.class.getCanonicalName();
     }
 
     public static class VanishSetting {

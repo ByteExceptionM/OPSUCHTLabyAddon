@@ -4,9 +4,10 @@ import eu.byteexception.labymod.gui.modules.FlyModule;
 import eu.byteexception.labymod.gui.modules.GlowModule;
 import eu.byteexception.labymod.gui.modules.ILabyModule;
 import eu.byteexception.labymod.gui.modules.VanishModule;
-import eu.byteexception.labymod.listener.labymod.FlyModuleUpdateListener;
-import eu.byteexception.labymod.listener.labymod.VanishModuleUpdateListener;
-import eu.byteexception.labymod.listener.server.SettingsSynchronisationListener;
+import eu.byteexception.labymod.internal.listener.FlyModeUpdateListener;
+import eu.byteexception.labymod.internal.listener.PlayerSettingsSynchronizeListener;
+import eu.byteexception.labymod.internal.listener.VanishModeUpdateListener;
+import eu.byteexception.labymod.listener.labymod.ServerMessageListener;
 import eu.byteexception.labymod.server.OPSuchtLabyServer;
 import lombok.Getter;
 import net.labymod.api.LabyModAddon;
@@ -54,7 +55,8 @@ public class OPSuchtLabyAddon extends LabyModAddon {
         this.getApi().registerServerSupport(this, new OPSuchtLabyServer(this, "opsucht_network",
                 "127.0.0.1", "localhost", "OPSuchtNET", "opsucht.net"));
 
-        this.getApi().getEventService().registerListener(new SettingsSynchronisationListener(this));
+        this.getApi().getEventService().registerListener(new ServerMessageListener(this));
+        this.getApi().getEventService().registerListener(new PlayerSettingsSynchronizeListener());
     }
 
     @Override
@@ -75,8 +77,8 @@ public class OPSuchtLabyAddon extends LabyModAddon {
         this.getModules().forEach(this.getApi()::registerModule);
 
         this.getModuleListener().addAll(Stream.of(
-                new VanishModuleUpdateListener(),
-                new FlyModuleUpdateListener()
+                new VanishModeUpdateListener(),
+                new FlyModeUpdateListener()
         ).map(Object::getClass).map(Class::getCanonicalName).collect(Collectors.toList()));
 
         this.getLogger().info(String.format("Registered module(s): %s", this.getModules().stream().map(SimpleModule::getDisplayName).collect(Collectors.joining(", "))));
