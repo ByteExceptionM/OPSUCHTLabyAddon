@@ -1,10 +1,8 @@
 package eu.byteexception.labymod;
 
-import eu.byteexception.labymod.gui.modules.FlyModule;
-import eu.byteexception.labymod.gui.modules.GlowModule;
-import eu.byteexception.labymod.gui.modules.ILabyModule;
-import eu.byteexception.labymod.gui.modules.VanishModule;
+import eu.byteexception.labymod.gui.modules.*;
 import eu.byteexception.labymod.internal.listener.FlyModeUpdateListener;
+import eu.byteexception.labymod.internal.listener.GodModeUpdateListener;
 import eu.byteexception.labymod.internal.listener.PlayerSettingsSynchronizeListener;
 import eu.byteexception.labymod.internal.listener.VanishModeUpdateListener;
 import eu.byteexception.labymod.listener.labymod.ServerMessageListener;
@@ -72,14 +70,15 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
     private void loadModules() {
         this.getModules().addAll(Arrays.asList(
-                new VanishModule(), new FlyModule(), new GlowModule()
+                new VanishModule(), new FlyModule(), new GlowModule(), new GodModule()
         ));
 
         this.getModules().forEach(this.getApi()::registerModule);
 
         this.getModuleListener().addAll(Stream.of(
                 new VanishModeUpdateListener(),
-                new FlyModeUpdateListener()
+                new FlyModeUpdateListener(),
+                new GodModeUpdateListener()
         ).map(Object::getClass).map(Class::getCanonicalName).collect(Collectors.toList()));
 
         this.getLogger().info(String.format("Registered module(s): %s", this.getModules().stream().map(SimpleModule::getDisplayName).collect(Collectors.joining(", "))));
