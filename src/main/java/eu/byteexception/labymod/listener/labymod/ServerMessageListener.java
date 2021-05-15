@@ -16,23 +16,27 @@ public class ServerMessageListener {
 
     @Subscribe
     public void onServerMessage(ServerMessageEvent event) {
-        this.addon.getLogger().info(event.getMessageKey());
-
         JsonObject jsonObject = event.getServerMessage().getAsJsonObject();
 
-        if (event.getMessageKey().equals("opsucht_fly_mode")) {
-            this.addon.getApi().getEventService().fireEvent(new FlyModeUpdateEvent(jsonObject.get("value").getAsBoolean()));
-            return;
-        }
+        switch (event.getMessageKey()) {
 
-        if (event.getMessageKey().equals("opsucht_vanish_mode")) {
-            this.addon.getApi().getEventService().fireEvent(new VanishModeUpdateEvent(jsonObject.get("value").getAsBoolean()));
-            return;
-        }
+            case "opsucht_fly_mode": {
+                this.addon.fireEvent(new FlyModeUpdateEvent(jsonObject.get("value").getAsBoolean()));
+                break;
+            }
 
-        if (event.getMessageKey().equals("opsucht_settings")) {
-            this.addon.getApi().getEventService().fireEvent(new PlayerSettingsSynchronizeEvent(jsonObject));
-            return;
+            case "opsucht_vanish_mode": {
+                this.addon.fireEvent(new VanishModeUpdateEvent(jsonObject.get("value").getAsBoolean()));
+                break;
+            }
+
+            case "opsucht_settings": {
+                this.addon.fireEvent(new PlayerSettingsSynchronizeEvent(jsonObject));
+                break;
+            }
+
+            default: break;
+
         }
     }
 

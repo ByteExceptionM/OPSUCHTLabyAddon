@@ -11,6 +11,7 @@ import eu.byteexception.labymod.listener.labymod.ServerMessageListener;
 import eu.byteexception.labymod.server.OPSuchtLabyServer;
 import lombok.Getter;
 import net.labymod.api.LabyModAddon;
+import net.labymod.api.event.Event;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
@@ -83,4 +84,9 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
         this.getLogger().info(String.format("Registered module(s): %s", this.getModules().stream().map(SimpleModule::getDisplayName).collect(Collectors.joining(", "))));
     }
+
+    public void fireEvent(Event event) {
+        this.getApi().getEventService().fireEvent(event);
+    }
+
 }
