@@ -9,6 +9,8 @@ import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.PacketBuffer;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class OPSuchtLabyServer extends Server {
 
@@ -22,7 +24,19 @@ public class OPSuchtLabyServer extends Server {
 
     @Override
     public void onJoin(ServerData serverData) {
-        this.addon.getLogger().info("Joined server with labymod addon support " + serverData.serverIP);
+        this.addon.getModuleListener().stream().filter(listenerClazz -> this.addon.getModules().stream().filter(labyModule -> Objects.nonNull(labyModule.getListenerName())).anyMatch(labyModule ->
+                labyModule.getListenerName().equals(listenerClazz) && labyModule.isShown())).map(clazz -> {
+            try {
+                return Class.forName(clazz).newInstance();
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).filter(Objects::nonNull).collect(Collectors.toList()).forEach(listener -> {
+            this.addon.getModuleListener().remove(listener.getClass().getCanonicalName());
+            this.addon.getApi().getEventService().registerListener(listener);
+            this.addon.getLogger().info("Registering listener " + listener.getClass().getSimpleName());
+        });
     }
 
     @Override

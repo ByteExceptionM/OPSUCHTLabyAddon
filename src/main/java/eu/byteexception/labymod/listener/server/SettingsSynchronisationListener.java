@@ -1,4 +1,4 @@
-package eu.byteexception.labymod.listener;
+package eu.byteexception.labymod.listener.server;
 
 import eu.byteexception.labymod.OPSuchtLabyAddon;
 import eu.byteexception.labymod.gui.settings.PlayerSettings;
