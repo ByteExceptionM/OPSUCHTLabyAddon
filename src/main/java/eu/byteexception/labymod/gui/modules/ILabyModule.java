@@ -16,7 +16,7 @@ public abstract class ILabyModule extends SimpleModule {
 
     @Override
     public boolean isShown() {
-        return PlayerSettings.getBooleanValue(this.getSettingName());
+        return PlayerSettings.getBooleanValue(this.getSettingName()) && OPSuchtLabyAddon.getInstance().getOpSuchtLabyServer().getConnected();
     }
 
     @Override

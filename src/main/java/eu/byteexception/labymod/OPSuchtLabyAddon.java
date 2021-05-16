@@ -5,6 +5,7 @@ import eu.byteexception.labymod.internal.listener.FlyModeUpdateListener;
 import eu.byteexception.labymod.internal.listener.GodModeUpdateListener;
 import eu.byteexception.labymod.internal.listener.PlayerSettingsSynchronizeListener;
 import eu.byteexception.labymod.internal.listener.VanishModeUpdateListener;
+import eu.byteexception.labymod.listener.labymod.DisconnectServerListener;
 import eu.byteexception.labymod.listener.labymod.ServerMessageListener;
 import eu.byteexception.labymod.server.OPSuchtLabyServer;
 import lombok.Getter;
@@ -30,6 +31,9 @@ public class OPSuchtLabyAddon extends LabyModAddon {
     private static OPSuchtLabyAddon instance;
 
     @Getter
+    private OPSuchtLabyServer opSuchtLabyServer;
+
+    @Getter
     private final Logger logger = Logger.getLogger("Minecraft");
 
     @Getter
@@ -51,10 +55,13 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
         this.loadModules();
 
-        this.getApi().registerServerSupport(this, new OPSuchtLabyServer(this, "opsucht_network",
-                "127.0.0.1", "localhost", "OPSuchtNET", "opsucht.net"));
+        this.opSuchtLabyServer = new OPSuchtLabyServer(this, "opsucht_network",
+                "127.0.0.1", "localhost", "OPSuchtNET", "opsucht.net", "test.byteexception.eu");
+
+        this.getApi().registerServerSupport(this, this.getOpSuchtLabyServer());
 
         this.getApi().getEventService().registerListener(new ServerMessageListener(this));
+        this.getApi().getEventService().registerListener(new DisconnectServerListener(this));
         this.getApi().getEventService().registerListener(new PlayerSettingsSynchronizeListener());
     }
 
@@ -70,7 +77,8 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
     private void loadModules() {
         this.getModules().addAll(Arrays.asList(
-                new VanishModule(), new FlyModule(), new GlowModule(), new GodModule()
+                new VanishModule(), new FlyModule(), new GodModule(),
+                new GlowModule()
         ));
 
         this.getModules().forEach(this.getApi()::registerModule);
