@@ -62,7 +62,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
         this.getApi().getEventService().registerListener(new ServerMessageListener(this));
         this.getApi().getEventService().registerListener(new DisconnectServerListener(this));
-        this.getApi().getEventService().registerListener(new PlayerSettingsSynchronizeListener());
+        this.getApi().getEventService().registerListener(new PlayerSettingsSynchronizeListener(this));
     }
 
     @Override
