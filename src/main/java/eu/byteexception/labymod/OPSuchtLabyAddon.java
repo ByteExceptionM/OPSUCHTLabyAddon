@@ -23,7 +23,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class OPSuchtLabyAddon extends LabyModAddon {
 
@@ -40,7 +39,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
     private final List<ILabyModule> modules = new LinkedList<>();
 
     @Getter
-    private final List<String> moduleListener = new LinkedList<>();
+    private final List<Object> moduleListener = new LinkedList<>();
 
     @Getter
     private final ModuleCategory opSuchtModuleCategory = new ModuleCategory("OPSucht", true, new IconData(Material.PAPER));
@@ -83,13 +82,17 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
         this.getModules().forEach(this.getApi()::registerModule);
 
-        this.getModuleListener().addAll(Stream.of(
+        this.getLogger().info(String.format("Registered module(s): %s", this.getModules().stream().map(SimpleModule::getDisplayName).collect(Collectors.joining(", "))));
+
+        this.getModuleListener().addAll(Arrays.asList(
                 new VanishModeUpdateListener(),
                 new FlyModeUpdateListener(),
                 new GodModeUpdateListener()
-        ).map(Object::getClass).map(Class::getCanonicalName).collect(Collectors.toList()));
+        ));
 
-        this.getLogger().info(String.format("Registered module(s): %s", this.getModules().stream().map(SimpleModule::getDisplayName).collect(Collectors.joining(", "))));
+        this.getModuleListener().forEach(this.getApi().getEventService()::registerListener);
+
+        this.getLogger().info(String.format("Registered listener: %s", this.getModuleListener().stream().map(Object::getClass).map(Class::getSimpleName).collect(Collectors.joining(", "))));
     }
 
     public void fireEvent(Event event) {
