@@ -1,6 +1,7 @@
 package eu.byteexception.labymod.gui.modules;
 
 import eu.byteexception.labymod.internal.listener.FlyModeUpdateListener;
+import net.labymod.core.LabyModCore;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
@@ -11,6 +12,11 @@ public class FlyModule extends ILabyModule {
     @Override
     public String getDisplayName() {
         return "Fly";
+    }
+
+    @Override
+    public boolean isShown() {
+        return super.isShown() && !LabyModCore.getMinecraft().getPlayer().isCreative() && !LabyModCore.getMinecraft().getPlayer().isSpectator();
     }
 
     @Override
