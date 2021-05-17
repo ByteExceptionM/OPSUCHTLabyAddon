@@ -19,7 +19,7 @@ public class PlayerSettingsSynchronizeListener {
         PlayerSettings.playerSettings = event.getPlayerSettings();
 
         this.addon.getModuleListener().stream().filter(listenerClazz -> this.addon.getModules().stream().filter(labyModule -> Objects.nonNull(labyModule.getListenerName()))
-                .anyMatch(labyModule -> labyModule.getListenerName().equals(listenerClazz) && event.getPlayerSettings().get(labyModule.getSettingName()).getAsBoolean())).map(clazz -> {
+                .anyMatch(labyModule -> labyModule.getListenerName().equals(listenerClazz) && event.getPlayerSettings().get(labyModule.getSettingName()).getAsBoolean())).map(Object::toString).map(clazz -> {
             try {
                 return Class.forName(clazz, true, Thread.currentThread().getContextClassLoader()).newInstance();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
