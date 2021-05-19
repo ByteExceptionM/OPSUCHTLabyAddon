@@ -5,7 +5,7 @@ import eu.byteexception.labymod.gui.settings.PlayerSettings;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 
-public abstract class ILabyModule extends SimpleModule {
+public abstract class LabyModule extends SimpleModule {
 
     public abstract String getListenerName();
 

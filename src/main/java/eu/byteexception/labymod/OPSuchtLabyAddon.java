@@ -37,7 +37,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
     private final Logger logger = Logger.getLogger("Minecraft");
 
     @Getter
-    private final List<ILabyModule> modules = new LinkedList<>();
+    private final List<LabyModule> modules = new LinkedList<>();
 
     @Getter
     private final List<String> moduleListener = new LinkedList<>();

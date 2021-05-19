@@ -7,7 +7,7 @@ import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
 
-public class FlyModule extends ILabyModule {
+public class FlyModule extends LabyModule {
 
     @Override
     public String getDisplayName() {

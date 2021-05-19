@@ -9,7 +9,7 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 
 import java.util.Objects;
 
-public class GlowModule extends ILabyModule {
+public class GlowModule extends LabyModule {
 
     @Override
     public String getDisplayName() {

@@ -5,7 +5,7 @@ import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
 
-public class VanishModule extends ILabyModule {
+public class VanishModule extends LabyModule {
 
     @Override
     public String getDisplayName() {
