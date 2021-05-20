@@ -32,6 +32,8 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 def mcpVersion = [channel: 'snapshot', version: '20201028-1.16.3']
 
+compileJava.options.encoding = 'UTF-8'
+
 mixin {
     defaultObfuscationEnv searge
     add sourceSets.main, "example.refmap.json"
@@ -114,4 +116,3 @@ task downloadAPI(type: Download) {
     src "https://dl.labymod.net/latest/api/files/lm_api_mc1.16.5.jar"
     dest 'libs/'
 }
-

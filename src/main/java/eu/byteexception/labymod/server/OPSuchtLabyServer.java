@@ -38,11 +38,11 @@ public class OPSuchtLabyServer extends Server {
 
     @Override
     public void handlePayloadMessage(String channel, PacketBuffer packetBuffer) {
-        this.addon.getLogger().info("Incoming payload message over channel " + channel);
+
     }
 
     @Override
-    public void handleTabInfoMessage(Type type, String formattedMessage, String rawMessage) throws Exception {
+    public void handleTabInfoMessage(Type type, String formattedMessage, String rawMessage) {
 
     }
 
