@@ -12,6 +12,8 @@ import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.ClickEvent.Action;
 import net.minecraft.util.text.event.HoverEvent;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -35,21 +37,28 @@ public class MessageModifyListener {
 
         String playerName = playerNameComponent.getString();
 
+        List<ITextComponent> playerNameComponentSiblings = new LinkedList<>(Collections.singletonList(playerNameComponent));
+
         if (playerNameComponent.getString().equals("~")) {
             StringBuilder playerNameBuilder = new StringBuilder();
 
-            for (int i = componentSiblings.indexOf(playerNameComponent); i < componentSiblings.size(); i++) {
-                String nextComponentString = componentSiblings.get(i).getString();
+            for (int i = componentSiblings.indexOf(playerNameComponent) + 1; i < componentSiblings.size(); i++) {
+                ITextComponent textComponent = componentSiblings.get(i);
 
-                if (nextComponentString.startsWith(" ")) break;
+                if (textComponent.getString().startsWith(" ")) break;
 
-                playerNameBuilder.append(nextComponentString);
+                playerNameBuilder.append(textComponent.getString());
+
+                playerNameComponentSiblings.add(textComponent);
             }
 
             playerName = playerNameBuilder.substring(0);
         }
 
-        component.getSiblings().set(componentSiblings.indexOf(playerNameComponent), this.applyStyle(playerNameComponent, playerName));
+        String finalPlayerName = playerName;
+
+        playerNameComponentSiblings.forEach(textComponent ->
+                component.getSiblings().set(componentSiblings.indexOf(textComponent), this.applyStyle(textComponent, finalPlayerName)));
 
         event.setComponent(component);
     }
