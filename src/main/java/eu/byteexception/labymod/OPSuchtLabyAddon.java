@@ -6,6 +6,7 @@ import eu.byteexception.labymod.internal.listener.GodModeUpdateListener;
 import eu.byteexception.labymod.internal.listener.PlayerSettingsSynchronizeListener;
 import eu.byteexception.labymod.internal.listener.VanishModeUpdateListener;
 import eu.byteexception.labymod.listener.labymod.DisconnectServerListener;
+import eu.byteexception.labymod.listener.labymod.MessageModifyListener;
 import eu.byteexception.labymod.listener.labymod.ServerMessageListener;
 import eu.byteexception.labymod.server.OPSuchtLabyServer;
 import lombok.Getter;
@@ -63,6 +64,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
         this.getApi().getEventService().registerListener(new ServerMessageListener(this));
         this.getApi().getEventService().registerListener(new DisconnectServerListener(this));
         this.getApi().getEventService().registerListener(new PlayerSettingsSynchronizeListener(this));
+        this.getApi().getEventService().registerListener(new MessageModifyListener(this));
     }
 
     @Override
