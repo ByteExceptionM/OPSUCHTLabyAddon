@@ -17,6 +17,8 @@ public class ServerMessageListener {
 
     @Subscribe
     public void onServerMessage(ServerMessageEvent event) {
+        if (!this.addon.getOpSuchtLabyServer().getConnected()) return;
+
         JsonObject jsonObject = event.getServerMessage().getAsJsonObject();
 
         switch (event.getMessageKey()) {

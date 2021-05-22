@@ -23,6 +23,8 @@ public class MessageModifyListener {
 
     @Subscribe
     public void onMessageModify(MessageModifyEvent event) {
+        if (!this.addon.getOpSuchtLabyServer().getConnected()) return;
+
         ITextComponent component = event.getComponent();
 
         if (!component.getString().contains("|") || !component.getString().contains("~")) return;

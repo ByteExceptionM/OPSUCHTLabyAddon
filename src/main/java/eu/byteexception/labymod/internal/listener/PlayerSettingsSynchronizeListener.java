@@ -16,7 +16,7 @@ public class PlayerSettingsSynchronizeListener {
 
     @Subscribe
     public void onPlayerSettingsSynchronize(PlayerSettingsSynchronizeEvent event) {
-        PlayerSettings.playerSettings = event.getPlayerSettings();
+        PlayerSettings.setPlayerSettings(event.getPlayerSettings());
 
         this.addon.getModuleListener().stream().filter(listenerClazz -> this.addon.getModules().stream().filter(labyModule -> Objects.nonNull(labyModule.getListenerName()))
                 .anyMatch(labyModule -> labyModule.getListenerName().equals(listenerClazz) && event.getPlayerSettings().get(labyModule.getSettingName()).getAsBoolean())).map(Object::toString).map(clazz -> {
