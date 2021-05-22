@@ -17,6 +17,7 @@ import net.labymod.api.event.Event;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
+import net.labymod.main.listeners.GuiOpenListener;
 import net.labymod.settings.elements.SettingsElement;
 
 import java.util.Arrays;
@@ -63,11 +64,14 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
         this.getApi().registerServerSupport(this, this.getOpSuchtLabyServer());
 
-        this.getApi().getEventService().registerListener(new ServerMessageListener(this));
-        this.getApi().getEventService().registerListener(new DisconnectServerListener(this));
-        this.getApi().getEventService().registerListener(new PlayerSettingsSynchronizeListener(this));
-        this.getApi().getEventService().registerListener(new MessageModifyListener(this));
-        this.getApi().getEventService().registerListener(new ServerSwitchListener(this));
+        Stream.of(
+                new ServerMessageListener(this),
+                new DisconnectServerListener(this),
+                new PlayerSettingsSynchronizeListener(this),
+                new MessageModifyListener(this),
+                new ServerSwitchListener(this),
+                new GuiOpenListener()
+        ).forEach(this.getApi().getEventService()::registerListener);
     }
 
     @Override
