@@ -80,16 +80,16 @@ public class ReconnectScreen extends Screen {
             Minecraft.getInstance().displayGuiScreen(this.parentScreen);
         }));
 
-        this.reconnectButton = new Button(this.width / 2 - 115,
-                Math.min(this.height / 2 + this.textHeight / 2 + 9, this.height - 30), 100, 20,
-                new StringTextComponent("Reconnect in: §a" + this.secondsLeft + "s"), onClick -> {
-            this.timer.cancel();
+        this.addButton(
+                this.reconnectButton = new Button(this.width / 2 - 115,
+                        Math.min(this.height / 2 + this.textHeight / 2 + 9, this.height - 30), 100, 20,
+                        new StringTextComponent("Reconnect in: §a" + this.secondsLeft + "s"), onClick -> {
+                    this.timer.cancel();
 
-            Minecraft.getInstance().displayGuiScreen(
-                    new ConnectingScreen(this.parentScreen, Minecraft.getInstance(), ScreenOpenListener.getLatestServer()));
-        });
-
-        this.addButton(this.reconnectButton);
+                    Minecraft.getInstance().displayGuiScreen(
+                            new ConnectingScreen(this.parentScreen, Minecraft.getInstance(), ScreenOpenListener.getLatestServer()));
+                })
+        );
 
         (this.timer = new Timer()).schedule(new TimerTask() {
             @Override
