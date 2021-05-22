@@ -59,8 +59,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
         this.loadModules();
 
         this.opSuchtLabyServer = new OPSuchtLabyServer(this, "opsucht_network",
-                "test.byteexception.eu", "localhost",
-                "opsucht.net", "bng1.opsucht.net", "bng2.opsucht.net", "play.opsucht.net", "mc.opsucht.net");
+                "test.byteexception.eu", "localhost", "opsucht.net", "play.opsucht.net", "mc.opsucht.net");
 
         this.getApi().registerServerSupport(this, this.getOpSuchtLabyServer());
 
