@@ -28,7 +28,7 @@ public class OPSuchtLabyServer extends Server {
 
     @Override
     public void onJoin(ServerData serverData) {
-        this.connected = true;
+        this.setConnected(true);
     }
 
     @Override
