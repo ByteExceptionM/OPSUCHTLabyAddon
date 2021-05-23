@@ -9,13 +9,18 @@ import net.labymod.utils.ModColor;
 public class VanishModule extends LabyModule {
 
     @Override
+    public String getListenerName() {
+        return VanishModeUpdateListener.class.getCanonicalName();
+    }
+
+    @Override
     public String getDisplayName() {
         return "Vanish";
     }
 
     @Override
     public String getDisplayValue() {
-        return PlayerSettings.getVanishMode() ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
+        return PlayerSettings.getVanishMode() ? ModColor.GREEN + "An" : ModColor.RED + "Aus";
     }
 
     @Override
@@ -25,7 +30,7 @@ public class VanishModule extends LabyModule {
 
     @Override
     public String getControlName() {
-        return "Vanish-Status";
+        return "Vanish";
     }
 
     @Override
@@ -36,11 +41,6 @@ public class VanishModule extends LabyModule {
     @Override
     public int getSortingId() {
         return 2;
-    }
-
-    @Override
-    public String getListenerName() {
-        return VanishModeUpdateListener.class.getCanonicalName();
     }
 
 }

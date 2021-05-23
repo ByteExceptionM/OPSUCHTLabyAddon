@@ -10,6 +10,11 @@ import net.labymod.utils.ModColor;
 public class GodModule extends LabyModule {
 
     @Override
+    public String getListenerName() {
+        return GodModeUpdateListener.class.getCanonicalName();
+    }
+
+    @Override
     public String getDisplayName() {
         return "GodMode";
     }
@@ -21,7 +26,7 @@ public class GodModule extends LabyModule {
 
     @Override
     public String getDisplayValue() {
-        return PlayerSettings.getGodMode() ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
+        return PlayerSettings.getGodMode() ? ModColor.GREEN + "An" : ModColor.RED + "Aus";
     }
 
     @Override
@@ -31,7 +36,7 @@ public class GodModule extends LabyModule {
 
     @Override
     public String getControlName() {
-        return "GodMode-Status";
+        return "GodMode";
     }
 
     @Override
@@ -42,11 +47,6 @@ public class GodModule extends LabyModule {
     @Override
     public int getSortingId() {
         return 3;
-    }
-
-    @Override
-    public String getListenerName() {
-        return GodModeUpdateListener.class.getCanonicalName();
     }
 
 }

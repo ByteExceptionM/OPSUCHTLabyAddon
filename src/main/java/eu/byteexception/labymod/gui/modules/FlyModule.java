@@ -11,6 +11,11 @@ import net.labymod.utils.ModColor;
 public class FlyModule extends LabyModule {
 
     @Override
+    public String getListenerName() {
+        return FlyModeUpdateListener.class.getCanonicalName();
+    }
+
+    @Override
     public String getDisplayName() {
         return "Fly";
     }
@@ -22,7 +27,7 @@ public class FlyModule extends LabyModule {
 
     @Override
     public String getDisplayValue() {
-        return PlayerSettings.getFlyMode() ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
+        return PlayerSettings.getFlyMode() ? ModColor.GREEN + "An" : ModColor.RED + "Aus";
     }
 
     @Override
@@ -32,7 +37,7 @@ public class FlyModule extends LabyModule {
 
     @Override
     public String getControlName() {
-        return "Fly-Status";
+        return "Fly";
     }
 
     @Override
@@ -43,11 +48,6 @@ public class FlyModule extends LabyModule {
     @Override
     public int getSortingId() {
         return 0;
-    }
-
-    @Override
-    public String getListenerName() {
-        return FlyModeUpdateListener.class.getCanonicalName();
     }
 
 }
