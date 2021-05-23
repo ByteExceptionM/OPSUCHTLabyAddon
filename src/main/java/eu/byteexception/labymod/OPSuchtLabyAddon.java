@@ -11,6 +11,7 @@ import eu.byteexception.labymod.listener.labymod.MessageModifyListener;
 import eu.byteexception.labymod.listener.labymod.ServerMessageListener;
 import eu.byteexception.labymod.listener.labymod.ServerSwitchListener;
 import eu.byteexception.labymod.server.OPSuchtLabyServer;
+import eu.byteexception.labymod.settings.AddonSettings;
 import lombok.Getter;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Event;
@@ -18,7 +19,11 @@ import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.main.listeners.GuiOpenListener;
+import net.labymod.settings.elements.BooleanElement;
+import net.labymod.settings.elements.ControlElement.IconData;
+import net.labymod.settings.elements.HeaderElement;
 import net.labymod.settings.elements.SettingsElement;
+import net.labymod.utils.Material;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -31,6 +36,9 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
     @Getter
     private static OPSuchtLabyAddon instance;
+
+    @Getter
+    private AddonSettings addonSettings;
 
     @Getter
     private OPSuchtLabyServer opSuchtLabyServer;
@@ -76,12 +84,31 @@ public class OPSuchtLabyAddon extends LabyModAddon {
 
     @Override
     public void loadConfig() {
-
+        this.addonSettings = new AddonSettings(
+                this.getConfig().has("autoReconnect") && this.getConfig().get("autoReconnect").getAsBoolean(),
+                this.getConfig().has("clickableNicks") && this.getConfig().get("clickableNicks").getAsBoolean()
+        );
     }
 
     @Override
-    protected void fillSettings(List<SettingsElement> list) {
-
+    protected void fillSettings(List<SettingsElement> settingsElements) {
+        settingsElements.add(new HeaderElement("§eAuto-Reconnect"));
+        settingsElements.add(
+                new BooleanElement("§6Aktiviert", new IconData(Material.LEVER), value -> {
+                    this.addonSettings.setAutoReconnectEnabled(value);
+                    this.getConfig().addProperty("autoReconnect", value);
+                    this.saveConfig();
+                }, this.addonSettings.getAutoReconnectEnabled())
+        );
+        settingsElements.add(new HeaderElement(" "));
+        settingsElements.add(new HeaderElement("§eKlickbare Nicknamen"));
+        settingsElements.add(
+                new BooleanElement("§6Aktiviert", new IconData(Material.LEVER), value -> {
+                    this.addonSettings.setClickableNicks(value);
+                    this.getConfig().addProperty("clickableNicks", value);
+                    this.saveConfig();
+                }, this.addonSettings.getClickableNicks())
+        );
     }
 
     private void loadModules() {

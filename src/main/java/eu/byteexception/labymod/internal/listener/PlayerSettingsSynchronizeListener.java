@@ -1,8 +1,8 @@
 package eu.byteexception.labymod.internal.listener;
 
 import eu.byteexception.labymod.OPSuchtLabyAddon;
-import eu.byteexception.labymod.gui.settings.PlayerSettings;
 import eu.byteexception.labymod.internal.events.PlayerSettingsSynchronizeEvent;
+import eu.byteexception.labymod.settings.PlayerSettings;
 import lombok.AllArgsConstructor;
 import net.labymod.api.event.Subscribe;
 

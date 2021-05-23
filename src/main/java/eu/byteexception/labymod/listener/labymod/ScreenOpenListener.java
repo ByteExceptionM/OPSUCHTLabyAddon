@@ -30,6 +30,8 @@ public class ScreenOpenListener {
 
     @Subscribe
     public void onScreenOpen(ScreenOpenEvent event) {
+        if (!this.addon.getAddonSettings().getAutoReconnectEnabled()) return;
+
         Screen screen = event.getScreen();
 
         if (screen instanceof ConnectingScreen) {

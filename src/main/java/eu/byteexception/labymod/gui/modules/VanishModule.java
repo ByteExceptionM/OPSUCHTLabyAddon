@@ -1,6 +1,7 @@
 package eu.byteexception.labymod.gui.modules;
 
 import eu.byteexception.labymod.internal.listener.VanishModeUpdateListener;
+import eu.byteexception.labymod.settings.PlayerSettings;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
@@ -14,7 +15,7 @@ public class VanishModule extends LabyModule {
 
     @Override
     public String getDisplayValue() {
-        return VanishSetting.vanishMode ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
+        return PlayerSettings.getVanishMode() ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
     }
 
     @Override
@@ -40,12 +41,6 @@ public class VanishModule extends LabyModule {
     @Override
     public String getListenerName() {
         return VanishModeUpdateListener.class.getCanonicalName();
-    }
-
-    public static class VanishSetting {
-
-        public static Boolean vanishMode = false;
-
     }
 
 }

@@ -23,7 +23,7 @@ public class MessageModifyListener {
 
     @Subscribe
     public void onMessageModify(MessageModifyEvent event) {
-        if (!this.addon.getOpSuchtLabyServer().getConnected()) return;
+        if (!this.addon.getAddonSettings().getClickableNicks() || !this.addon.getOpSuchtLabyServer().getConnected()) return;
 
         ITextComponent component = event.getComponent();
 

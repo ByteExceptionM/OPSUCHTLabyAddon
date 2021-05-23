@@ -1,6 +1,7 @@
 package eu.byteexception.labymod.gui.modules;
 
 import eu.byteexception.labymod.internal.listener.GodModeUpdateListener;
+import eu.byteexception.labymod.settings.PlayerSettings;
 import net.labymod.core.LabyModCore;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
@@ -20,7 +21,7 @@ public class GodModule extends LabyModule {
 
     @Override
     public String getDisplayValue() {
-        return GodModeSettings.godMode ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
+        return PlayerSettings.getGodMode() ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
     }
 
     @Override
@@ -46,12 +47,6 @@ public class GodModule extends LabyModule {
     @Override
     public String getListenerName() {
         return GodModeUpdateListener.class.getCanonicalName();
-    }
-
-    public static class GodModeSettings {
-
-        public static Boolean godMode = false;
-
     }
 
 }

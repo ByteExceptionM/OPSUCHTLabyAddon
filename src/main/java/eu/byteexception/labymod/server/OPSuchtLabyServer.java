@@ -16,8 +16,7 @@ public class OPSuchtLabyServer extends Server {
 
     private final OPSuchtLabyAddon addon;
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private Boolean connected = false;
 
     public OPSuchtLabyServer(OPSuchtLabyAddon addon, String name, String... addressNames) {

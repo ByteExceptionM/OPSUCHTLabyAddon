@@ -47,4 +47,5 @@ public class GlowModule extends LabyModule {
     public String getListenerName() {
         return null;
     }
+
 }

@@ -1,7 +1,7 @@
 package eu.byteexception.labymod.gui.modules;
 
 import eu.byteexception.labymod.OPSuchtLabyAddon;
-import eu.byteexception.labymod.gui.settings.PlayerSettings;
+import eu.byteexception.labymod.settings.PlayerSettings;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 
