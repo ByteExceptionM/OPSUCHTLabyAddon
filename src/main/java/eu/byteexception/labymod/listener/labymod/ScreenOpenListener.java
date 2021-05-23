@@ -30,14 +30,14 @@ public class ScreenOpenListener {
 
     @Subscribe
     public void onScreenOpen(ScreenOpenEvent event) {
-        if (!this.addon.getAddonSettings().getAutoReconnectEnabled()) return;
-
         Screen screen = event.getScreen();
 
         if (screen instanceof ConnectingScreen) {
             latestServer = Minecraft.getInstance().getCurrentServerData();
             return;
         }
+
+        if (!this.addon.getAddonSettings().getAutoReconnectEnabled()) return;
 
         if (!(screen instanceof DisconnectedScreen)) return;
 
