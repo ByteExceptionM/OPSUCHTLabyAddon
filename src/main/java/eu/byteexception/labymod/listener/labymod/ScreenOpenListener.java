@@ -4,6 +4,7 @@ import eu.byteexception.labymod.OPSuchtLabyAddon;
 import eu.byteexception.labymod.gui.screens.ReconnectScreen;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.gui.screen.ScreenOpenEvent;
 import net.labymod.gui.GuiRefreshSession;
@@ -25,15 +26,15 @@ public class ScreenOpenListener {
 
     private final OPSuchtLabyAddon addon;
 
-    @Getter
+    @Getter @Setter
     private static ServerData latestServer;
 
-    @Subscribe
+    @Subscribe(priority = 5)
     public void onScreenOpen(ScreenOpenEvent event) {
         Screen screen = event.getScreen();
 
         if (screen instanceof ConnectingScreen) {
-            latestServer = Minecraft.getInstance().getCurrentServerData();
+            setLatestServer(Minecraft.getInstance().getCurrentServerData());
             return;
         }
 
@@ -51,6 +52,8 @@ public class ScreenOpenListener {
                     .findFirst();
 
             if (!titleField.isPresent()) return;
+
+            titleField.get().setAccessible(true);
 
             screen = new ReconnectScreen(disconnectedScreen, ((ITextComponent) titleField.get().get(disconnectedScreen)));
         } catch (IllegalStateException ignored) {

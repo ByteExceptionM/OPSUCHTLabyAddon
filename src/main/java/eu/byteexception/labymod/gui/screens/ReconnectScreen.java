@@ -48,7 +48,9 @@ public class ReconnectScreen extends Screen {
         if (!parentScreenField.isPresent())
             throw new NullPointerException("Could not find parent screen field for reconnect screen");
 
-        this.parentScreen = ((DisconnectedScreen) parentScreenField.get().get(disconnectedScreen));
+        parentScreenField.get().setAccessible(true);
+
+        this.parentScreen = ((Screen) parentScreenField.get().get(disconnectedScreen));
 
         Optional<Field> messageField = Arrays.stream(DisconnectedScreen.class.getDeclaredFields())
                 .filter(field -> Modifier.isPrivate(field.getModifiers()))
@@ -58,6 +60,8 @@ public class ReconnectScreen extends Screen {
 
         if (!messageField.isPresent())
             throw new NullPointerException("Could not find message field for reconnect screen");
+
+        messageField.get().setAccessible(true);
 
         this.message = (ITextComponent) messageField.get().get(disconnectedScreen);
 

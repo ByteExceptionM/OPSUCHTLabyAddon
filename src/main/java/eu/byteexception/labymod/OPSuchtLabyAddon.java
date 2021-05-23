@@ -6,10 +6,7 @@ import eu.byteexception.labymod.internal.listener.FlyModeUpdateListener;
 import eu.byteexception.labymod.internal.listener.GodModeUpdateListener;
 import eu.byteexception.labymod.internal.listener.PlayerSettingsSynchronizeListener;
 import eu.byteexception.labymod.internal.listener.VanishModeUpdateListener;
-import eu.byteexception.labymod.listener.labymod.DisconnectServerListener;
-import eu.byteexception.labymod.listener.labymod.MessageModifyListener;
-import eu.byteexception.labymod.listener.labymod.ServerMessageListener;
-import eu.byteexception.labymod.listener.labymod.ServerSwitchListener;
+import eu.byteexception.labymod.listener.labymod.*;
 import eu.byteexception.labymod.server.OPSuchtLabyServer;
 import eu.byteexception.labymod.settings.AddonSettings;
 import lombok.Getter;
@@ -18,7 +15,6 @@ import net.labymod.api.event.Event;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
-import net.labymod.main.listeners.GuiOpenListener;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.settings.elements.HeaderElement;
@@ -78,7 +74,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
                 new PlayerSettingsSynchronizeListener(this),
                 new MessageModifyListener(this),
                 new ServerSwitchListener(this),
-                new GuiOpenListener()
+                new ScreenOpenListener(this)
         ).forEach(this.getApi().getEventService()::registerListener);
     }
 
