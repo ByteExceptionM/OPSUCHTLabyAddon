@@ -1,11 +1,11 @@
 package eu.byteexception.labymod.gui.modules;
 
 import eu.byteexception.labymod.OPSuchtLabyAddon;
-import eu.byteexception.labymod.gui.settings.PlayerSettings;
+import eu.byteexception.labymod.settings.PlayerSettings;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 
-public abstract class ILabyModule extends SimpleModule {
+public abstract class LabyModule extends SimpleModule {
 
     public abstract String getListenerName();
 
@@ -16,7 +16,7 @@ public abstract class ILabyModule extends SimpleModule {
 
     @Override
     public boolean isShown() {
-        return PlayerSettings.getBooleanValue(this.getSettingName());
+        return PlayerSettings.getBooleanValue(this.getSettingName()) && OPSuchtLabyAddon.getInstance().getOpSuchtLabyServer().getConnected();
     }
 
     @Override

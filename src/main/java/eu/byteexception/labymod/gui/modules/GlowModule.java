@@ -9,7 +9,12 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 
 import java.util.Objects;
 
-public class GlowModule extends ILabyModule {
+public class GlowModule extends LabyModule {
+
+    @Override
+    public String getListenerName() {
+        return null;
+    }
 
     @Override
     public String getDisplayName() {
@@ -20,7 +25,7 @@ public class GlowModule extends ILabyModule {
     public String getDisplayValue() {
         ClientPlayerEntity clientPlayerEntity = Minecraft.getInstance().player;
 
-        return Objects.nonNull(clientPlayerEntity) && clientPlayerEntity.isGlowing() ? ModColor.cl('a') + "An" : ModColor.cl('c') + "Aus";
+        return Objects.nonNull(clientPlayerEntity) && clientPlayerEntity.isGlowing() ? ModColor.GREEN + "An" : ModColor.RED + "Aus";
     }
 
     @Override
@@ -30,7 +35,7 @@ public class GlowModule extends ILabyModule {
 
     @Override
     public String getControlName() {
-        return "Glow-Status";
+        return "Glow";
     }
 
     @Override
@@ -43,8 +48,4 @@ public class GlowModule extends ILabyModule {
         return 1;
     }
 
-    @Override
-    public String getListenerName() {
-        return null;
-    }
 }

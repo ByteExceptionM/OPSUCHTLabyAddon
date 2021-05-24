@@ -28,5 +28,4 @@ public class DynamicIconData extends ControlElement.IconData {
     public ResourceLocation getTextureIcon() {
         return LabyMod.getInstance().getDynamicTextureManager().getTexture(this.identifier, this.url);
     }
-
 }

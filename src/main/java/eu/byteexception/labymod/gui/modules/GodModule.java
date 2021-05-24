@@ -1,23 +1,22 @@
 package eu.byteexception.labymod.gui.modules;
 
-import eu.byteexception.labymod.internal.listener.FlyModeUpdateListener;
+import eu.byteexception.labymod.internal.listener.GodModeUpdateListener;
 import eu.byteexception.labymod.settings.PlayerSettings;
 import net.labymod.core.LabyModCore;
-import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
 
-public class FlyModule extends LabyModule {
+public class GodModule extends LabyModule {
 
     @Override
     public String getListenerName() {
-        return FlyModeUpdateListener.class.getCanonicalName();
+        return GodModeUpdateListener.class.getCanonicalName();
     }
 
     @Override
     public String getDisplayName() {
-        return "Fly";
+        return "GodMode";
     }
 
     @Override
@@ -27,27 +26,27 @@ public class FlyModule extends LabyModule {
 
     @Override
     public String getDisplayValue() {
-        return PlayerSettings.getFlyMode() ? ModColor.GREEN + "An" : ModColor.RED + "Aus";
+        return PlayerSettings.getGodMode() ? ModColor.GREEN + "An" : ModColor.RED + "Aus";
     }
 
     @Override
     public IconData getIconData() {
-        return new ControlElement.IconData(Material.ELYTRA);
+        return new IconData(Material.DIAMOND_CHESTPLATE);
     }
 
     @Override
     public String getControlName() {
-        return "Fly";
+        return "GodMode";
     }
 
     @Override
     public String getSettingName() {
-        return "fly_state";
+        return "god_mode_state";
     }
 
     @Override
     public int getSortingId() {
-        return 0;
+        return 3;
     }
 
 }
