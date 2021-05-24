@@ -74,7 +74,8 @@ public class OPSuchtLabyAddon extends LabyModAddon {
                 new PlayerSettingsSynchronizeListener(this),
                 new MessageModifyListener(this),
                 new ServerSwitchListener(this),
-                new ScreenOpenListener(this)
+                new ScreenOpenListener(this),
+                new LoginServerListener()
         ).forEach(this.getApi().getEventService()::registerListener);
     }
 
