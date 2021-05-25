@@ -1,6 +1,7 @@
 package eu.byteexception.labymod.gui.screens;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import eu.byteexception.labymod.OPSuchtLabyAddon;
 import eu.byteexception.labymod.listener.labymod.ScreenOpenListener;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IBidiRenderer;
@@ -32,12 +33,14 @@ public class ReconnectScreen extends Screen {
 
     private Timer timer;
 
-    private int secondsLeft = 5;
+    private int autoReconnectDelay;
 
     private int textHeight;
 
     public ReconnectScreen(DisconnectedScreen disconnectedScreen, ITextComponent title) throws IllegalAccessException {
         super(title);
+
+        this.autoReconnectDelay = OPSuchtLabyAddon.getInstance().getAddonSettings().getAutoReconnectDelay();
 
         Optional<Field> parentScreenField = Arrays.stream(DisconnectedScreen.class.getDeclaredFields())
                 .filter(field -> Modifier.isPrivate(field.getModifiers()))
@@ -87,7 +90,7 @@ public class ReconnectScreen extends Screen {
         this.addButton(
                 this.reconnectButton = new Button(this.width / 2 - 115,
                         Math.min(this.height / 2 + this.textHeight / 2 + 9, this.height - 30), 100, 20,
-                        new StringTextComponent("Reconnect in: §a" + this.secondsLeft + "s"), onClick -> {
+                        new StringTextComponent("Reconnect in: §a" + this.autoReconnectDelay + "s"), onClick -> {
                     this.timer.cancel();
 
                     Minecraft.getInstance().displayGuiScreen(
@@ -98,17 +101,17 @@ public class ReconnectScreen extends Screen {
         (this.timer = new Timer()).schedule(new TimerTask() {
             @Override
             public void run() {
-                ReconnectScreen.this.secondsLeft--;
+                ReconnectScreen.this.autoReconnectDelay--;
 
-                if (ReconnectScreen.this.secondsLeft == 0) {
+                if (ReconnectScreen.this.autoReconnectDelay == 0) {
                     ReconnectScreen.this.timer.cancel();
                     return;
                 }
 
-                String color = ReconnectScreen.this.secondsLeft > 3 ? "a" : ReconnectScreen.this.secondsLeft > 1 ? "e" : "c";
+                String color = ReconnectScreen.this.autoReconnectDelay > 3 ? "a" : ReconnectScreen.this.autoReconnectDelay > 1 ? "e" : "c";
 
                 ReconnectScreen.this.reconnectButton.setMessage(
-                        new StringTextComponent("Reconnect in: §" + color + ReconnectScreen.this.secondsLeft + "s"));
+                        new StringTextComponent("Reconnect in: §" + color + ReconnectScreen.this.autoReconnectDelay + "s"));
             }
         }, 1000L, 1000L);
     }
@@ -123,7 +126,7 @@ public class ReconnectScreen extends Screen {
 
         super.render(matrixStack, mouseX, mouseY, partialTicks);
 
-        if (this.secondsLeft != 0) return;
+        if (this.autoReconnectDelay != 0) return;
 
         this.reconnectButton.onPress();
     }

@@ -11,6 +11,9 @@ public class AddonSettings {
     private Boolean autoReconnectEnabled;
 
     @Getter @Setter
+    private Integer autoReconnectDelay;
+
+    @Getter @Setter
     private Boolean clickableNicks;
 
 }
