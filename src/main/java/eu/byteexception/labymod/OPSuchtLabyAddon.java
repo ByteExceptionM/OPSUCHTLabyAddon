@@ -18,7 +18,6 @@ import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.settings.elements.HeaderElement;
-import net.labymod.settings.elements.NumberElement;
 import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Material;
 
@@ -75,7 +74,6 @@ public class OPSuchtLabyAddon extends LabyModAddon {
                 new PlayerSettingsSynchronizeListener(this),
                 new MessageModifyListener(this),
                 new ServerSwitchListener(this),
-                new ScreenOpenListener(this),
                 new LoginServerListener()
         ).forEach(this.getApi().getEventService()::registerListener);
     }
@@ -83,36 +81,12 @@ public class OPSuchtLabyAddon extends LabyModAddon {
     @Override
     public void loadConfig() {
         this.addonSettings = new AddonSettings(
-                this.getConfig().has("autoReconnect") && this.getConfig().get("autoReconnect").getAsBoolean(),
-                this.getConfig().has("autoReconnectDelay") ? this.getConfig().get("autoReconnectDelay").getAsInt() : 5,
                 this.getConfig().has("clickableNicks") && this.getConfig().get("clickableNicks").getAsBoolean()
         );
     }
 
     @Override
     protected void fillSettings(List<SettingsElement> settingsElements) {
-
-        // ---
-
-        settingsElements.add(new HeaderElement("§eAuto-Reconnect"));
-        settingsElements.add(
-                new BooleanElement("§6Aktiviert", new IconData(Material.LEVER), value -> {
-                    this.addonSettings.setAutoReconnectEnabled(value);
-                    this.getConfig().addProperty("autoReconnect", value);
-                    this.saveConfig();
-                }, this.addonSettings.getAutoReconnectEnabled())
-        );
-        settingsElements.add(new NumberElement("§6Verzögerung", new IconData(Material.REDSTONE_LAMP), this.addonSettings.getAutoReconnectDelay())
-                .setRange(5, 60)
-                .addCallback(value -> {
-                    this.addonSettings.setAutoReconnectDelay(value);
-                    this.getConfig().addProperty("autoReconnectDelay", value);
-                    this.saveConfig();
-                }));
-
-        // ---
-
-        settingsElements.add(new HeaderElement(" "));
         settingsElements.add(new HeaderElement("§eKlickbare Nicknamen"));
         settingsElements.add(
                 new BooleanElement("§6Aktiviert", new IconData(Material.LEVER), value -> {

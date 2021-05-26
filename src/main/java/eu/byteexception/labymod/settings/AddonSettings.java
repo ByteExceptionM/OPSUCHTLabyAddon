@@ -8,12 +8,6 @@ import lombok.Setter;
 public class AddonSettings {
 
     @Getter @Setter
-    private Boolean autoReconnectEnabled;
-
-    @Getter @Setter
-    private Integer autoReconnectDelay;
-
-    @Getter @Setter
     private Boolean clickableNicks;
 
 }
