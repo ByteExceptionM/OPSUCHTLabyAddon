@@ -81,7 +81,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
     @Override
     public void loadConfig() {
         this.addonSettings = new AddonSettings(
-                this.getConfig().has("clickableNicks") && this.getConfig().get("clickableNicks").getAsBoolean()
+                !this.getConfig().has("clickableNicks") || this.getConfig().get("clickableNicks").getAsBoolean()
         );
     }
 
