@@ -1,8 +1,8 @@
 {
-  "name": "OPSucht-LabyAddon",
+  "name": "OPSUCHT LabyAddon",
   "uuid": "%uuid%",
   "mainClass": "eu.byteexception.labymod.OPSuchtLabyAddon",
-  "description": "Official OPSucht LabyMod addon",
+  "description": "Official OPSUCHT LabyMod addon",
   "version": 1,
   "author": "Interwebmedia GmbH",
   "category": 3,
