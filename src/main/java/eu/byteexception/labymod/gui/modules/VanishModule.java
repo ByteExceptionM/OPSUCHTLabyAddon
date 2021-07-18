@@ -9,8 +9,8 @@ import net.labymod.utils.ModColor;
 public class VanishModule extends LabyModule {
 
     @Override
-    public String getListenerName() {
-        return VanishModeUpdateListener.class.getCanonicalName();
+    public Class<?> getListener() {
+        return VanishModeUpdateListener.class;
     }
 
     @Override

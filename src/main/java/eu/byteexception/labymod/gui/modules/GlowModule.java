@@ -12,7 +12,7 @@ import java.util.Objects;
 public class GlowModule extends LabyModule {
 
     @Override
-    public String getListenerName() {
+    public Class<?> getListener() {
         return null;
     }
 

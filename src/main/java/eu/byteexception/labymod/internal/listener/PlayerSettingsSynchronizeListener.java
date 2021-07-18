@@ -18,16 +18,21 @@ public class PlayerSettingsSynchronizeListener {
     public void onPlayerSettingsSynchronize(PlayerSettingsSynchronizeEvent event) {
         PlayerSettings.setPlayerSettings(event.getPlayerSettings());
 
-        this.addon.getModuleListener().stream().filter(listenerClazz -> this.addon.getModules().stream().filter(labyModule -> Objects.nonNull(labyModule.getListenerName()))
-                .anyMatch(labyModule -> labyModule.getListenerName().equals(listenerClazz) && event.getPlayerSettings().get(labyModule.getSettingName()).getAsBoolean())).map(Object::toString).map(clazz -> {
-            try {
-                return Class.forName(clazz, true, Thread.currentThread().getContextClassLoader()).newInstance();
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }).filter(Objects::nonNull).collect(Collectors.toList()).forEach(listener -> {
-            this.addon.getModuleListener().remove(listener.getClass().getCanonicalName());
+        this.addon.getModules()
+                .stream()
+                .filter(labyModule -> Objects.nonNull(labyModule.getListener()))
+                .filter(labyModule -> event.getPlayerSettings().get(labyModule.getSettingName()).getAsBoolean())
+                .collect(Collectors.toMap(labyModule -> labyModule, labyModule -> {
+                    try {
+                        return labyModule.getListener().newInstance();
+                    } catch (InstantiationException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    return 0;
+                })).forEach((labyModule, listener) -> {
+            if (listener instanceof Integer) return;
+
+            this.addon.getModules().remove(labyModule);
             this.addon.getApi().getEventService().registerListener(listener);
             this.addon.getLogger().info("Registering listener " + listener.getClass().getSimpleName());
         });
