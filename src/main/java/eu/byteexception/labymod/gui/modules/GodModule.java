@@ -10,8 +10,8 @@ import net.labymod.utils.ModColor;
 public class GodModule extends LabyModule {
 
     @Override
-    public String getListenerName() {
-        return GodModeUpdateListener.class.getCanonicalName();
+    public Class<?> getListener() {
+        return GodModeUpdateListener.class;
     }
 
     @Override

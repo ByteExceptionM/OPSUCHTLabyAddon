@@ -11,8 +11,8 @@ import net.labymod.utils.ModColor;
 public class FlyModule extends LabyModule {
 
     @Override
-    public String getListenerName() {
-        return FlyModeUpdateListener.class.getCanonicalName();
+    public Class<?> getListener() {
+        return FlyModeUpdateListener.class;
     }
 
     @Override

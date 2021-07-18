@@ -7,7 +7,7 @@ import net.labymod.ingamegui.moduletypes.SimpleModule;
 
 public abstract class LabyModule extends SimpleModule {
 
-    public abstract String getListenerName();
+    public abstract Class<?> getListener();
 
     @Override
     public ModuleCategory getCategory() {
