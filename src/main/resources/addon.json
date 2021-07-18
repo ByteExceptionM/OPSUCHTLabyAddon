@@ -2,7 +2,7 @@
   "name": "OPSUCHT LabyAddon",
   "uuid": "%uuid%",
   "mainClass": "eu.byteexception.labymod.OPSuchtLabyAddon",
-  "description": "Official OPSUCHT LabyMod addon",
+  "description": "Official OPSUCHT LabyMod addon for some in-game facilitation",
   "version": 1,
   "author": "ByteException_ (Interwebmedia GmbH)",
   "category": 3,
