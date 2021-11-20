@@ -16,6 +16,12 @@ public class ServerSwitchListener {
     public void onServerSwitch(ServerSwitchEvent event) {
         if (!this.addon.getOpSuchtLabyServer().getConnected()) return;
 
-        PlayerSettings.setPlayerSettings(new JsonObject());
+        JsonObject jsonObject = new JsonObject();
+
+        PlayerSettings.setPlayerSettings(jsonObject);
+
+        jsonObject.addProperty("bank-visibility", this.addon.getAddonSettings().getBankVisibility());
+
+        this.addon.getApi().sendJsonMessageToServer("opsucht_bank", jsonObject);
     }
 }

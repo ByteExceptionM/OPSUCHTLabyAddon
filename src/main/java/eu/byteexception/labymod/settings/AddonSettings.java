@@ -5,9 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
+@Getter
+@Setter
 public class AddonSettings {
 
-    @Getter @Setter
     private Boolean clickableNicks;
+
+    private Boolean bankVisibility;
 
 }
