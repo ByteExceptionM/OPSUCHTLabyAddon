@@ -75,8 +75,7 @@ public class OPSuchtLabyAddon extends LabyModAddon {
     @Override
     public void loadConfig() {
         this.addonSettings = new AddonSettings(
-                !this.getConfig().has("clickableNicks") || this.getConfig().get("clickableNicks").getAsBoolean(),
-                !this.getConfig().has("bankVisibility") || this.getConfig().get("bankVisibility").getAsBoolean()
+                !this.getConfig().has("clickableNicks") || this.getConfig().get("clickableNicks").getAsBoolean()
         );
     }
 
@@ -89,17 +88,6 @@ public class OPSuchtLabyAddon extends LabyModAddon {
                     this.getConfig().addProperty("clickableNicks", value);
                     this.saveConfig();
                 }, this.addonSettings.getClickableNicks())
-        );
-
-        settingsElements.add(new HeaderElement(" "));
-
-        settingsElements.add(new HeaderElement("§eBank-Anzeige"));
-        settingsElements.add(
-                new BooleanElement("§6Aktiviert", new IconData(Material.LEVER), value -> {
-                    this.addonSettings.setBankVisibility(value);
-                    this.getConfig().addProperty("bankVisibility", value);
-                    this.saveConfig();
-                }, this.addonSettings.getBankVisibility())
         );
     }
 
